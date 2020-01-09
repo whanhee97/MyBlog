@@ -1,12 +1,36 @@
 <html>
     <head>
-        <title>HH's Blog</title>
+        <title>HH's To Do List</title>
         <meta charset="utf-8">
     </head>
     <body>
-        <h1>환희 블로그에 오신걸 환영합니다.</h1>
-        <ol>
-            <li>게시판</li>
-        </ol>
+        <h1>To Do List</h1>
+        <div class="inputBox">
+            <input type="text" placeholder="New task" id="input_bar"><input type="button" value = "ADD" id="add_button">
+        </div>
+        <div class="dolist">
+            <table>
+                <thead>
+                    <tr>
+                        <th>check</th><th>List</th>
+                    </tr>
+                </thead>
+                <tbody id="todobody">
+                    <tr>
+                        <td><input type="checkbox"></td><td>자바스크립트 공부</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td><td>아르바이트</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+        <div class="action">
+            <input type="button" value="선택삭제" id="select_delete">
+            <input type="button" value="마지막 항목 삭제" id="last_delete">
+            <input type="button" value="전체삭제" id="all_delete">
+        </div>
+        <script src="todo.js"></script>
     </body>
 </html>
