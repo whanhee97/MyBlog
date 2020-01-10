@@ -4,6 +4,8 @@ document.getElementById('select_delete').addEventListener('click', selectDelete_
 document.getElementById('last_delete').addEventListener('click', lastDelete_list); // 마지막 삭제
 document.getElementById('all_delete').addEventListener('click', deleteAll_list); // 전체 삭제
 
+
+
 function add_list(){ 
     var vinput = document.getElementById('input_bar'); //vinput은 HTMLInputElement 이걸로 알수있음 -> console.log(vinput.constructor.name);
     if(!vinput.value){ //js에서 비어있는걸 확인할 때에는 !을 쓴다.
@@ -17,6 +19,7 @@ function add_list(){
     var input = document.createElement('input'); //인풋 엘리먼트(체크박스)를 만든다
     input.setAttribute('type','checkbox');
     input.setAttribute('class','btn-check');
+    input.setAttribute('onclick','underbar(this)');
 
     var td1 = document.createElement('td'); //td엘리먼트를 만들고
     td1.appendChild(input); //체크박스 집어넣기
@@ -76,5 +79,16 @@ function deleteAll_list(){ // 모든 항목 삭제
     for(var i = 0;i<bodychild.length;i++){
         body.removeChild(bodychild[i]); // 여기까지만 하면 하나가 삭제되면서 값이 밀림. for문을 돌리는 동시에 삭제하는 것이므로
         i--; // 따라서 지워줄때마다 i를 하나씩 줄여주므로써 bodychild[0]만을 제거 -> 몇개안지워지는 현상 해결
+    }
+}
+
+function underbar(box){ // box는 이벤트 객체로 체크박스를 의미
+    var child_list = box.parentNode.parentNode.children; // 체크박스의 부모의 부모는 tr이고 그것의 children은 td들
+    var text = child_list[child_list.length-1]; // td중 마지막 친구를 text에 넣어줌
+    if(box.checked === true){ 
+        text.style.textDecoration = "line-through"; //js에서 css는 style속성을통해 제어, text-decoration의 경우 붙이고 d를 대문자로
+    }
+    else{
+        text.style.textDecoration = "none";
     }
 }
