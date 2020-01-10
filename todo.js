@@ -1,5 +1,5 @@
 document.getElementById('add_button').addEventListener('click', add_list); // 항목추가
-document.getElementById('select_delete').addEventListener('click', delete_list); // 선택 삭제
+document.getElementById('select_delete').addEventListener('click', selectDelete_list); // 선택 삭제
 //document.getElementById('last_delete').addEventListener('click', delete_list); // 마지막 삭제
 //document.getElementById('all_delete').addEventListener('click', delete_list); // 전체 삭제
 
