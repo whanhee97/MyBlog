@@ -1,7 +1,8 @@
+//이벤트 리스너를 추가시키는 작업
 document.getElementById('add_button').addEventListener('click', add_list); // 항목추가
 document.getElementById('select_delete').addEventListener('click', selectDelete_list); // 선택 삭제
 document.getElementById('last_delete').addEventListener('click', lastDelete_list); // 마지막 삭제
-//document.getElementById('all_delete').addEventListener('click', delete_list); // 전체 삭제
+document.getElementById('all_delete').addEventListener('click', deleteAll_list); // 전체 삭제
 
 function add_list(){ 
     var vinput = document.getElementById('input_bar'); //vinput은 HTMLInputElement 이걸로 알수있음 -> console.log(vinput.constructor.name);
@@ -61,9 +62,19 @@ function selectDelete_list(){ // 선택된 행 삭제
 
 }
 
-function lastDelete_list(){
+function lastDelete_list(){ // 마지막 항목 삭제
     var body = document.getElementById('todobody');
     var checkboxes = document.getElementsByClassName('btn-check'); // 체크박스들을 다 가지고와서
     var last_checkbox = checkboxes[checkboxes.length-1]; // 마지막 인덱스의 체크박스를 라스트 체크박스에 넣고
     body.removeChild(last_checkbox.parentNode.parentNode); // last_checkbox.parentNode.parentNode(= td.parentNode = tr) 을 삭제해준다.
+}
+
+function deleteAll_list(){ // 모든 항목 삭제
+    var body = document.getElementById('todobody');
+    var bodychild = body.children; //body.childNodes의 경우 text공백도 노드로 가져온다. 이때 children을 쓰면 하위 엘리먼트만 가져온다.
+    
+    for(var i = 0;i<bodychild.length;i++){
+        body.removeChild(bodychild[i]); // 여기까지만 하면 하나가 삭제되면서 값이 밀림. for문을 돌리는 동시에 삭제하는 것이므로
+        i--; // 따라서 지워줄때마다 i를 하나씩 줄여주므로써 bodychild[0]만을 제거 -> 몇개안지워지는 현상 해결
+    }
 }
