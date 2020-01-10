@@ -1,6 +1,6 @@
 document.getElementById('add_button').addEventListener('click', add_list); // 항목추가
 document.getElementById('select_delete').addEventListener('click', selectDelete_list); // 선택 삭제
-//document.getElementById('last_delete').addEventListener('click', delete_list); // 마지막 삭제
+document.getElementById('last_delete').addEventListener('click', lastDelete_list); // 마지막 삭제
 //document.getElementById('all_delete').addEventListener('click', delete_list); // 전체 삭제
 
 function add_list(){ 
@@ -15,7 +15,7 @@ function add_list(){
     var tr = document.createElement('tr'); // tr엘리먼트를 만든다.
     var input = document.createElement('input'); //인풋 엘리먼트(체크박스)를 만든다
     input.setAttribute('type','checkbox');
-    
+    input.setAttribute('class','btn-check');
 
     var td1 = document.createElement('td'); //td엘리먼트를 만들고
     td1.appendChild(input); //체크박스 집어넣기
@@ -42,4 +42,28 @@ function add_list(){
     cell2.innerHTML = vinput;
     */
 
+}
+
+function selectDelete_list(){ // 선택된 행 삭제
+    var checkboxes = document.getElementsByClassName('btn-check'); // 체크박스들의 엘리먼트를 배열로 가져온다.
+    var body = document.getElementById('todobody');
+    var checkedboxes = [];
+    for(index in checkboxes){
+        if(checkboxes[index].checked === true){
+            checkedboxes.push(checkboxes[index]);
+        }
+    } // 여기까지 과정이 checkedboxes라는 배열에 체크가된 박스들을 모아 놓는 작업
+    for(index in checkedboxes){
+        body.removeChild(checkedboxes[index].parentNode.parentNode);
+    } // 모아놓은 배열을 하나씩 삭제 해줌
+      // checkedboxes[index].parentNode -> td
+      // checkedboxes[index].parentNode.parentNode -> td.parentNode -> tr
+
+}
+
+function lastDelete_list(){
+    var body = document.getElementById('todobody');
+    var checkboxes = document.getElementsByClassName('btn-check'); // 체크박스들을 다 가지고와서
+    var last_checkbox = checkboxes[checkboxes.length-1]; // 마지막 인덱스의 체크박스를 라스트 체크박스에 넣고
+    body.removeChild(last_checkbox.parentNode.parentNode); // last_checkbox.parentNode.parentNode(= td.parentNode = tr) 을 삭제해준다.
 }
