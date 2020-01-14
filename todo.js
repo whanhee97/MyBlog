@@ -1,11 +1,3 @@
-//이벤트 리스너를 추가시키는 작업
-document.getElementById('add_button').addEventListener('click', add_list); // 항목추가
-document.getElementById('select_delete').addEventListener('click', selectDelete_list); // 선택 삭제
-document.getElementById('last_delete').addEventListener('click', lastDelete_list); // 마지막 삭제
-document.getElementById('all_delete').addEventListener('click', deleteAll_list); // 전체 삭제
-
-
-
 function add_list(){ 
     var vinput = document.getElementById('input_bar'); //vinput은 HTMLInputElement 이걸로 알수있음 -> console.log(vinput.constructor.name);
     if(!vinput.value){ //js에서 비어있는걸 확인할 때에는 !을 쓴다.
@@ -92,3 +84,18 @@ function underbar(box){ // box는 이벤트 객체로 체크박스를 의미
         text.style.textDecoration = "none";
     }
 }
+
+function add_listBykb(event){
+    if(event.keyCode !== 13)return;
+    else{
+        add_list();
+    }
+}
+
+//이벤트 리스너를 추가시키는 작업
+document.getElementById('add_button').addEventListener('click', add_list); // 항목추가
+window.addEventListener('keydown',add_listBykb);
+
+document.getElementById('select_delete').addEventListener('click', selectDelete_list); // 선택 삭제
+document.getElementById('last_delete').addEventListener('click', lastDelete_list); // 마지막 삭제
+document.getElementById('all_delete').addEventListener('click', deleteAll_list); // 전체 삭제
