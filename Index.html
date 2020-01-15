@@ -26,9 +26,21 @@
                     <tr>
                         <td><input type="checkbox" class="btn-check" onclick="underbar(this)"></td><td>여러 애니매이션 효과 적용하기</td>
                     </tr>
+                   
                 </tbody>
                 
             </table>
+        </div>
+        <div class="control">
+            <div class="trans">
+                <label for="fsize">Font Size</label><br>
+                <input type="range" name="fsize" id="fsize" min="0.5" max="3" step="0.1" value="1" data-sizing="rem">    
+            </div>
+            <!--라벨은 for값이랑 다른 태그의 id값이랑 같을경우 상호작용 가능함-->
+            <div class="col">
+                <label for="base">Color</label><input type="color" name="base" id="base" value="#ffffff">
+            </div>
+            
         </div>
         <div class="action">
             <input type="button" value="선택삭제" id="select_delete">

@@ -1,3 +1,8 @@
+:root{ 
+    --base: white;
+    --fsize: 1rem;
+} /* 사용자정의 속성 */
+
 html{
     background: url('bg.jpg');
     background-size: cover;
@@ -11,7 +16,8 @@ body,html {
 
 h1 a{
     text-decoration: none;
-    color: white;
+    color: var(--base);
+    
 }
 
 #logo{
@@ -30,13 +36,15 @@ h1 a{
     
 }
 
+
+
 #add_button{
     box-sizing: border-box;
     background-color: none;
-    border: 1.5px white solid;
+    border: 1.5px var(--base) solid;
     height: 100%;
     background-color: transparent;
-    color: white;
+    color: var(--base);
 }
 #input_bar{
     box-sizing: border-box;
@@ -49,13 +57,14 @@ h1 a{
     margin-top: 2rem;
     text-align: center;
     
-
 }
 
 .td_table{
     display: inline-block;
     text-align: center;
-    color: white;
+    color: var(--base);
+    font-size: var(--fsize);
+
 }
 .action{
     margin-top: 2rem;
@@ -64,7 +73,33 @@ h1 a{
 
 .action input{
     background-color: transparent;
-    color: white;
-    border: 1.5px white solid;
+    color: var(--base);
+    border: 1.5px var(--base) solid;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-check{
+    width: calc(var(--fsize)*0.9); /* calc는 변수를 계산할 수 있게 해줌 */
+    height: calc(var(--fsize)*0.9);
+}
+
+.control{
+    color: var(--base);
+    margin-top: 2rem;
+    text-align: center;
+}
+.trans{
+    display: inline-block;
+    margin-right: 4rem;
+}
+.col{
+    position: relative;
+    display: inline-block;
+    bottom: 0.7rem;
+}
+#fsize{
+    width: 100px;
+}
+#base{
+    margin-left: 0.5rem;
 }

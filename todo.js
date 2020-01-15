@@ -92,6 +92,19 @@ function add_listBykb(event){
     }
 }
 
+var inputs = document.querySelectorAll('.control input');
+
+function UpdateInput(){
+    var suffix = this.dataset.sizing || ''; //suffix는 단위, dataset은 태그속성중 data-??관련해서 준 속성값
+    document.documentElement.style.setProperty(`--${this.name}`,this.value + suffix);
+    
+}
+
+inputs.forEach(input => input.addEventListener('change',UpdateInput)); //inputs에는 엘리먼트들이 배열로 들어와있어서 forEach를 통해 각각 이벤트리스너를 추가해준다.
+inputs.forEach(input => input.addEventListener('mousemove',UpdateInput));
+
+
+
 //이벤트 리스너를 추가시키는 작업
 document.getElementById('add_button').addEventListener('click', add_list); // 항목추가
 window.addEventListener('keydown',add_listBykb);
