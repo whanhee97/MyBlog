@@ -86,7 +86,7 @@ function underbar(box){ // box는 이벤트 객체로 체크박스를 의미
 }
 
 function add_listBykb(event){
-    if(event.keyCode !== 13)return;
+    if(event.keyCode !== 13)return; //13이 엔터키(keycode.info)
     else{
         add_list();
     }
