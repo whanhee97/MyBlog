@@ -150,34 +150,19 @@ function modify_list(){
 
 }
 
-function save_list(){
-    var todobody = document.querySelector('#todobody');
-    var todoChild = todobody.children;
-    var txt = '';
-    var tr = '';
-    for(var i = 0; i<todoChild.length;i++){
-        tr = todoChild[i].outerHTML;
-        txt = txt+'\n'+tr;
-    }
-    var fileObject = new ActiveXObject("Scripting.FileSystemObject");
-    fWrite = fileObject.CreateTextFile('C:\\Users\\Aero 15\\Desktop\\MyBlog\\dolist.txt',true);
-    fWrite.write(txt);
-    fWrite.close();
 
-}
-
-
-//이벤트 리스너를 추가시키는 작업
 inputs.forEach(input => input.addEventListener('change',UpdateInput)); //inputs에는 엘리먼트들이 배열로 들어와있어서 forEach를 통해 각각 이벤트리스너를 추가해준다.
 inputs.forEach(input => input.addEventListener('mousemove',UpdateInput));
 
 
+
+//이벤트 리스너를 추가시키는 작업
 document.getElementById('add_button').addEventListener('click', add_list); // 항목추가
 window.addEventListener('keydown',add_listBykb);
 
 
 
-document.getElementById('save_button').addEventListener('click', save_list);
+
 document.getElementById('select_delete').addEventListener('click', selectDelete_list); // 선택 삭제
 document.getElementById('last_delete').addEventListener('click', lastDelete_list); // 마지막 삭제
 document.getElementById('all_delete').addEventListener('click', deleteAll_list); // 전체 삭제
