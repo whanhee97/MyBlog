@@ -1,4 +1,10 @@
+var isModifying = false;
+
 function add_list(){ 
+    if(isModifying === true){
+        return;
+    }
+    
     var vinput = document.getElementById('input_bar'); //vinput은 HTMLInputElement 이걸로 알수있음 -> console.log(vinput.constructor.name);
     if(!vinput.value){ //js에서 비어있는걸 확인할 때에는 !을 쓴다.
         alert("할 일을 입력해주세요!");
@@ -86,6 +92,9 @@ function underbar(box){ // box는 이벤트 객체로 체크박스를 의미
 }
 
 function add_listBykb(event){
+    if(isModifying === true){
+        return;
+    }
     if(event.keyCode !== 13)return; //13이 엔터키(keycode.info)
     else{
         add_list();
@@ -100,6 +109,48 @@ function UpdateInput(){
     
 }
 
+
+function modify_list(){
+    isModifying = true;
+    
+    var checkboxes = document.getElementsByClassName('btn-check'); //체크박스들의 엘리먼트를 배열로 담음
+    var checkedBox = []; //체크된 박스를 담는 배열
+    
+    for(index in checkboxes){
+        if(checkboxes[index].checked === true){
+            checkedBox.push(checkboxes[index]);
+        }
+    } // 여기까지 과정이 checkedboxes라는 배열에 체크가된 박스들을 모아 놓는 작업
+    
+    var temp = checkedBox[0].parentNode.parentNode.children[1].textContent;
+    if(checkedBox.length !== 1){
+        alert('하나의 체크박스를 선택하세요');
+        isModifying = false;
+        return;
+    }
+    else{
+        var input = document.getElementById('input_bar');
+        input.setAttribute('placeholder',' 수정할 내용을 입력 -> 선택수정');
+        input.focus();
+        var addButton = document.getElementById('add_button'); //add버튼을 취소버튼으로
+        addButton.setAttribute('value','취소');
+        checkedBox[0].parentNode.parentNode.children[1].textContent = input.value;
+        input.value = '';
+        addButton.addEventListener('click',function(){ //취소버튼이 클릭되면
+            input.setAttribute('placeholder',' new task');
+            addButton.setAttribute('value','ADD');
+            input.value = '';
+            isModifying = false;
+            return;
+        })
+        
+        
+        
+    }
+
+}
+
+
 inputs.forEach(input => input.addEventListener('change',UpdateInput)); //inputs에는 엘리먼트들이 배열로 들어와있어서 forEach를 통해 각각 이벤트리스너를 추가해준다.
 inputs.forEach(input => input.addEventListener('mousemove',UpdateInput));
 
@@ -109,6 +160,10 @@ inputs.forEach(input => input.addEventListener('mousemove',UpdateInput));
 document.getElementById('add_button').addEventListener('click', add_list); // 항목추가
 window.addEventListener('keydown',add_listBykb);
 
+
+
+
 document.getElementById('select_delete').addEventListener('click', selectDelete_list); // 선택 삭제
 document.getElementById('last_delete').addEventListener('click', lastDelete_list); // 마지막 삭제
 document.getElementById('all_delete').addEventListener('click', deleteAll_list); // 전체 삭제
+document.getElementById('modify').addEventListener('click',modify_list);
